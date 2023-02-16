@@ -1,12 +1,14 @@
 import { ActionState, Types } from "../reducer"
 import { Dispatch, memo } from 'react'
 import { PostList } from "../App"
+import { useAction, usePosts } from '../context'
 
 type Props = {
   post: PostList
-  dispatch: Dispatch<ActionState>
+  // dispatch: Dispatch<ActionState>
 }
-function Post ({ post, dispatch }: Props) {
+function Post ({ post }: Props) {
+  const dispatch = useAction()
   return (
     <div key={post.id}>
       <p>name: {post.name}</p>

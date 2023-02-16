@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef, useReducer } from 'react';
+import React, { useState, useEffect, useRef, useReducer, useContext } from 'react';
 import { Form } from './components/Form'
 import { PostsList } from './components/Posts';
 import './App.css';
 import { reducer, initState  } from './reducer';
+import { PostsContext, PostsProvider } from './context';
 
 export type PostList = {
   id: string
@@ -21,7 +22,8 @@ const postObj = [
 
 function App() {
   // const [posts, setPosts] = useState<PostList[]>(postObj)
-  const [posts, dispatch] = useReducer(reducer, initState)
+  // const [posts, dispatch] = useReducer(reducer, initState)
+  // const { posts } = useContext(PostsContext)
 
   const ref1 = useRef<any | null>(null)
   const ref2 = useRef<any | null>(null)
@@ -43,12 +45,14 @@ function App() {
   })
 
   return (
-    <div className="App">
-      <div>
-        <Form dispatch={dispatch} />
+    <PostsProvider>
+      <div className="App">
+        <div>
+          <Form />
+        </div>
+        <PostsList />
       </div>
-      <PostsList dispatch={dispatch} posts={posts.posts} />
-    </div>
+    </PostsProvider>
   );
 }
 

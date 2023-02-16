@@ -13,7 +13,7 @@ export enum Types {
   TOGGLE = 'TOGGLE'
 }
 
-interface PostState {
+export interface PostState {
   posts: SinglePost[]
 }
 
